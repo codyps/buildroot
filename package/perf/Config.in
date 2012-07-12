@@ -1,0 +1,6 @@
+config BR2_PACKAGE_PERF
+	bool "perf"
+	select BR2_PACKAGE_ELFUTILS
+	help
+		Linux profiling with performance counters. Command line tool.
+
