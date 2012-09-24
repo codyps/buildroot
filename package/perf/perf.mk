@@ -40,4 +40,4 @@ define PERF_INSTALL_TARGET_CMDS
 	$(MAKE) -C $(@D)/tools/perf DESTDIR=$(TARGET_DIR) install
 endef
 
-$(eval $(call GENTARGETS))
+$(eval $(generic-package))
