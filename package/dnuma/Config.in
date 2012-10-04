@@ -1,0 +1,5 @@
+config BR2_PACKAGE_DNUMA
+	bool "dynamic-numa-test"
+	help
+		Tester for dynamic numa support.
+
