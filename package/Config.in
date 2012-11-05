@@ -28,6 +28,8 @@ source "package/wavpack/Config.in"
 source "package/yavta/Config.in"
 endmenu
 
+source "package/tinia/Config.in"
+
 menu "Compressors and decompressors"
 source "package/bzip2/Config.in"
 if BR2_PACKAGE_BUSYBOX_SHOW_OTHERS

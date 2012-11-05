@@ -1,0 +1,4 @@
+config BR2_PACKAGE_TINIA
+	bool "tinia (early init)"
+	help
+		An init for initramfs
