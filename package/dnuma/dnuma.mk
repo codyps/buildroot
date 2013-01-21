@@ -8,7 +8,7 @@ define DNUMA_BUILD_CMDS
 endef
 
 define DNUMA_INSTALL_TARGET_CMDS
-	cp $(@D)/debugfs-test $(TARGET_DIR)/usr/bin/dnuma
+	$(MAKE) -C $(@D) install-dnuma DESTDIR=$(TARGET_DIR)
 endef
 
 define DNUMA_CLEAN_CMDS
