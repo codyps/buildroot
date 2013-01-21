@@ -1,0 +1,5 @@
+config BR2_PACKAGE_MEMKNOBS
+	bool "memknobs"
+	help
+		Exersises Linux's MM.
+
