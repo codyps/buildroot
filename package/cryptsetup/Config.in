@@ -1,0 +1,6 @@
+config BR2_PACKAGE_CRYPTSETUP
+	bool "cryptsetup"
+	help
+	  Sets up cryptographic volumes using dm-crypt
+
+	  http://code.google.com/p/cryptsetup/
