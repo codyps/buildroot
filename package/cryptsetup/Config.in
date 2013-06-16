@@ -1,6 +1,11 @@
 config BR2_PACKAGE_CRYPTSETUP
 	bool "cryptsetup"
+	depends on BR2_PACKAGE_LVM2 # we need LVM2, which needs BR2_LARGEFILE
+	depends on BR2_PACKAGE_UTIL_LINUX_LIBUUID
 	help
 	  Sets up cryptographic volumes using dm-crypt
 
 	  http://code.google.com/p/cryptsetup/
+
+comment "cryptsetup requires PACKAGE_LVM2 && PACKAGE_UTIL_LINUX_LIBUUID"
+	depends on !(BR2_PACKAGE_LVM2 && BR2_PAKAGE_UTIL_LINUX_LIBUUID)
