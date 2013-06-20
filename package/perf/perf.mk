@@ -28,6 +28,10 @@ else
 	PERF_MAKE_FLAGS += NO_LIBELF=1 NO_DWARF=1
 endif
 
+ifeq ($(BR2_PACKAGE_NUMACTL),y)
+	PERF_DEPENDENCIES += numactl
+endif
+
 define PERF_BUILD_CMDS
 	$(Q)if test ! -f $(LINUX_DIR)/tools/perf/Makefile ; then \
 		echo "Your kernel version is too old and does not have the perf tool." ; \
