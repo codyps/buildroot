@@ -8,13 +8,15 @@ CALC_BLOCKS=1
 CALC_INODES=1
 EXT_OPTS=
 EXT_OPTS_O=
+SLACK=40
 
-while getopts x:d:D:b:i:N:m:g:e:zfqUPhVv f
+while getopts x:d:D:b:i:N:m:g:e:s:zfqUPhVv f
 do
     case $f in
 	b) CALC_BLOCKS=0 ;;
 	N) CALC_INODES=0; INODES=$OPTARG ;;
 	d) TARGET_DIR=$OPTARG ;;
+        s) SLACK=$OPTARG ;;
     esac
 done
 eval IMG="\"\${${OPTIND}}\""
@@ -33,7 +35,7 @@ then
     # size ~= superblock, block+inode bitmaps, inodes (8 per block), blocks
     # we scale inodes / blocks with 10% to compensate for bitmaps size + slack
     BLOCKS=$(du -s -c -k $TARGET_DIR | grep total | sed -e "s/total//")
-    BLOCKS=$(expr 500 + \( $BLOCKS + $INODES / 8 \) \* 11 / 10)
+    BLOCKS=$(expr 500 + \( $BLOCKS + $INODES / 8 \) \* \( $SLACK + 100 \) / 100)
     # we add 1300 blocks (a bit more than 1 MiB, assuming 1KiB blocks) for
     # the journal if ext3/4
     # Note: I came to 1300 blocks after trial-and-error checks. YMMV.
