@@ -1,14 +1,14 @@
 DNUMA_VERSION = 0
-DNUMA_SITE = $(HOME)/trifles
+DNUMA_SITE = $(HOME)/dnuma-progs
 DNUMA_SITE_METHOD = local
 
 define DNUMA_BUILD_CMDS
 	-$(MAKE) -C $(@D) clean
-	$(MAKE) -C $(@D) CROSS_COMPILE="$(TARGET_CROSS)" debugfs-test
+	$(TARGET_MAKE_OPTS) $(MAKE) -C $(@D)
 endef
 
 define DNUMA_INSTALL_TARGET_CMDS
-	$(MAKE) -C $(@D) install-dnuma DESTDIR=$(TARGET_DIR)
+	$(TARGET_MAKE_OPTS) $(MAKE) -C $(@D) install DESTDIR=$(TARGET_DIR)
 endef
 
 define DNUMA_CLEAN_CMDS
