@@ -1,6 +1,6 @@
-DNUMA_VERSION = 0
-DNUMA_SITE = $(HOME)/dnuma-progs
-DNUMA_SITE_METHOD = local
+DNUMA_VERSION = 46a2ee0
+DNUMA_SITE = https://github.com/jmesmon/dnuma-progs.git
+DNUMA_SITE_METHOD = git
 
 define DNUMA_BUILD_CMDS
 	-$(MAKE) -C $(@D) clean
