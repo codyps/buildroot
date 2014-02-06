@@ -187,6 +187,7 @@ config BR2_UCLIBC_TARGET_ARCH
 	default m68k	   if BR2_m68k
 	default mips	   if BR2_mips || BR2_mipsel || BR2_mips64 || BR2_mips64el
 	default powerpc	   if BR2_powerpc
+	default powerpc64  if BR2_powerpc64
 	default sh	   if BR2_sh
 	default sparc	   if BR2_sparc
 	default xtensa	   if BR2_xtensa
@@ -251,7 +252,7 @@ config BR2_UCLIBC_SPARC_TYPE
 
 config BR2_UCLIBC_POWERPC_TYPE
 	string
-	depends on BR2_UCLIBC_TARGET_ARCH = "powerpc"
+	depends on BR2_UCLIBC_TARGET_ARCH = "powerpc" || BR2_UCLIBC_UCLIBC_TARGET_ARCH = "powerpc64"
 	default CLASSIC if !BR2_powerpc_8540 && !BR2_powerpc_8548
 	default E500    if BR2_powerpc_8540 || BR2_powerpc_8548
 

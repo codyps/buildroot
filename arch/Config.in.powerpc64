@@ -1,0 +1,60 @@
+choice
+	prompt "Target Architecture Variant"
+	depends on BR2_powerpc64
+	default BR2_generic_powerpc64
+	help
+	  Specific CPU variant to use
+
+config BR2_generic_powerpc64
+	bool "generic"
+config BR2_powerpc64_power7
+	bool "power7"
+config BR2_powerpc64_power6
+	bool "power6"
+config BR2_powerpc64_power5
+	bool "power5"
+config BR2_powerpc64_power4
+	bool "power4"
+
+endchoice
+
+choice
+	prompt "Target ABI"
+	depends on BR2_powerpc64
+	default BR2_powerpc64_CLASSIC
+	help
+	  Application Binary Interface to use
+
+config BR2_powerpc64_CLASSIC
+	bool "Classic"
+
+endchoice
+
+config BR2_POWERPC_SOFT_FLOAT
+	bool "Use soft-float"
+	select BR2_SOFT_FLOAT
+	help
+	  If your target CPU does not have a Floating Point Unit (FPU)
+	  or a kernel FPU emulator, but you still wish to support
+	  floating point functions, then everything will need to be
+	  compiled with soft floating point support (-msoft-float).
+
+config BR2_ARCH
+	default "powerpc64"	if BR2_powerpc64
+
+config BR2_ENDIAN
+	default "BIG"
+
+config BR2_GCC_TARGET_TUNE
+	default "power7"	if BR2_powerpc_power7
+	default "power6"	if BR2_powerpc_power6
+	default "power5"	if BR2_powerpc_power5
+	default "power4"	if BR2_powerpc_power4
+
+config BR2_GCC_TARGET_ABI
+	default "altivec"		if BR2_PPC_ABI_altivec
+	default "no-altivec"		if BR2_PPC_ABI_no-altivec
+	default "spe"			if BR2_PPC_ABI_spe
+	default "no-spe"		if BR2_PPC_ABI_no-spe
+	default "ibmlongdouble"		if BR2_PPC_ABI_ibmlongdouble
+	default "ieeelongdouble"	if BR2_PPC_ABI_ieeelongdouble
