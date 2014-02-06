@@ -101,6 +101,7 @@ HOST_GCC_COMMON_CONF_OPT = \
 	--disable-__cxa_atexit \
 	--with-gnu-ld \
 	--disable-libssp \
+	--disable-multilib \
 	--with-gmp=$(HOST_DIR)/usr \
 	--with-mpfr=$(HOST_DIR)/usr
 
