@@ -273,6 +273,37 @@ config BR2_CCACHE_DIR
 	help
 	  Where ccache should store cached files.
 
+config BR2_CCACHE_COMPILERCHECK
+	string "Compiler cache compiler check"
+	depends on BR2_CCACHE
+	default "none"
+	help
+	  Set CCACHE_COMPILERCHECK for CCACHE. By default, we set this to
+	  "none", meaning no checking is done and the user is responsible for
+	  clearing out the BR2_CCACHE_DIR as apropriate.
+
+	  Alternately, you could set it to
+           "%compiler% -v 2>&1 | sed \"s/--with-pkgversion='[^']*' //\" | sed \"s/([^)]*)//\""
+	  This allows the caching to be a little smarter: if you change
+	  compiler versions or ./configure options, ccache will know this and
+	  avoid impropper binary reuse. This still will not catch the case where
+	  the compiler version stays the same but additional patches which change
+	  ABI were applied.
+
+          This will be slower than "none".
+
+	  Setting this is no garuntee that issues will be prevented, blowing
+	  away the CCACHE_DIR at the first sign of trouble is recommended.
+
+	  An alternate value that checks the machine type and version only:
+	   "%compiler% -dumpmachine; %compiler% -dumpversion"
+
+config BR2_CCACHE_HOST
+	bool "Use buildroot's ccache for HOSTCC as well"
+	default n
+	help
+	  Enable if (for some reason) you don't have a ccache installed on your host system.
+
 config BR2_DEPRECATED
 	bool "Show packages that are deprecated or obsolete"
 	help

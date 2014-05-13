@@ -340,8 +340,15 @@ ifeq ($(BR2_CCACHE),y)
 CCACHE := $(HOST_DIR)/usr/bin/ccache
 BR_CACHE_DIR = $(call qstrip,$(BR2_CCACHE_DIR))
 export BR_CACHE_DIR
+ifeq ($(BR2_CCACHE_COMPILERCHECK),)
+BR2_CCACHE_COMPILERCHECK := "none"
+endif
+BR_CACHE_COMPILERCHECK := $(call qstrip,$(BR2_CCACHE_COMPILERCHECK))
+export BR_CCACHE_COMPILERCHECK
+ifeq ($(BR2_CCACHE_HOST),y)
 HOSTCC := $(CCACHE) $(HOSTCC)
 HOSTCXX := $(CCACHE) $(HOSTCXX)
+endif
 endif
 
 # Scripts in support/ or post-build scripts may need to reference
