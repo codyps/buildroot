@@ -218,6 +218,11 @@ config BR2_LINUX_KERNEL_VMLINUX_BIN
 config BR2_LINUX_KERNEL_VMLINUX
 	bool "vmlinux"
 
+config BR2_LINUX_KERNEL_VMLINUX_STRIPPED
+	bool "vmlinux (stripped)"
+	help
+	  Assumes you have a host "eu-strip" in path.
+
 config BR2_LINUX_KERNEL_VMLINUZ
 	bool "vmlinuz"
 	depends on BR2_mips || BR2_mipsel
