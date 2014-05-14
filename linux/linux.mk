@@ -302,6 +302,8 @@ endef
 define LINUX_INSTALL_IMAGES_CMDS
 	cp $(LINUX_IMAGE_PATH) $(BINARIES_DIR)
 	$(LINUX_INSTALL_DTB)
+	$(if $(BR2_LINUX_KERNEL_KEEP_VMLINUX),
+	  cp $(LINUX_DIR)/vmlinux $(BINARIES_DIR))
 endef
 
 define LINUX_INSTALL_TARGET_CMDS
@@ -352,6 +354,8 @@ $(LINUX_DIR)/.stamp_initramfs_rebuilt: $(LINUX_DIR)/.stamp_target_installed $(LI
 	$(LINUX_IMAGE_STRIP)
 	# Copy the kernel image to its final destination
 	cp $(LINUX_IMAGE_PATH) $(BINARIES_DIR)
+	$(if $(BR2_LINUX_KERNEL_KEEP_VMLINUX), \
+	  cp $(LINUX_DIR)/vmlinux $(BINARIES_DIR))
 	# If there is a .ub file copy it to the final destination
 	test ! -f $(LINUX_IMAGE_PATH).ub || cp $(LINUX_IMAGE_PATH).ub $(BINARIES_DIR)
 	$(Q)touch $@

@@ -240,6 +240,13 @@ config BR2_LINUX_KERNEL_IMAGE_TARGET_CUSTOM
 
 endchoice
 
+config BR2_LINUX_KERNEL_KEEP_VMLINUX
+	bool "Keep the vmlinux as well"
+	help
+	  For debugging, it is useful to have the vmlinux image avaliable.
+	  Select this to copy the vmlinux into the output dir along with whatever
+	  other image format is selected.
+
 config BR2_LINUX_KERNEL_IMAGE_TARGET_NAME
 	string "Kernel image target name"
 	depends on BR2_LINUX_KERNEL_IMAGE_TARGET_CUSTOM
